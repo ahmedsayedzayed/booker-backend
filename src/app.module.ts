@@ -10,6 +10,8 @@ import { AuthModule } from './auth/auth.module';
 import { BookmarksModule } from './bookmarks/bookmarks.module';
 import { LinksModule } from './links/links.module';
 import * as Joi from 'joi';
+import { PubsubModule } from './common/pubsub/pubsub.module';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 @Module({
   imports: [
@@ -25,12 +27,15 @@ import * as Joi from 'joi';
     GraphQLModule.forRoot<ApolloDriverConfig>({
       autoSchemaFile: true,
       driver: ApolloDriver,
+      installSubscriptionHandlers: true,
     }),
     UsersModule,
     DatabaseModule,
     AuthModule,
     BookmarksModule,
     LinksModule,
+    PubsubModule,
+    DashboardModule,
   ],
   controllers: [AppController],
   providers: [AppService],
